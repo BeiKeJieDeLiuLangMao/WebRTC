@@ -1,7 +1,12 @@
 # WebRTC
-A java wrapper for WebRTC by JNI based on WebRTC M70, you could use this java lib to communicate with any other WebRTC client(eg: chrome browser, android, ios...), stream from other client to java side isn't supported yet.
+A java wrapper for WebRTC by JNI based on WebRTC M70, you could use this java lib to communicate with any other WebRTC client(eg: chrome browser, android, ios...), stream from other client to java side isn't supported yet, if anyone would like to finish this part, your PR will been very expected.
 
 You could use this lib to transport video stream(include audio) to other WebRTC clients.
+
+# Blog about this lib
+[ZhiHu](https://zhuanlan.zhihu.com/p/86762371)
+
+[My site](https://www.beikejiedeliulangmao.top/%E5%9C%A8Java%E4%B8%AD%E4%BD%BF%E7%94%A8WebRTC%E4%BC%A0%E8%BE%93%E8%A7%86%E9%A2%91/)
 
 # Concept
 - libwebrtc: Chromium WebRTC c++ lib
