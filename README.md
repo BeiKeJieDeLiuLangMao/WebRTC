@@ -3,6 +3,7 @@ A java wrapper for WebRTC by JNI based on WebRTC M70, you could use this java li
 
 You could use this lib to transport video stream(include audio) to other WebRTC clients.
 
+This project may not be designed very well, but you can use it as a reference to know how to use webrtc native lib. You can take it as a start point to build your project.
 # Blog about this lib
 [ZhiHu](https://zhuanlan.zhihu.com/p/86762371)
 
@@ -55,6 +56,3 @@ npm run serve
 # How to develop based on it
 1. As described in `Dependencies`, you should build your own webrtc native lib, it's free to upgrade webrtc native lib if necessary
 2. Add new feature in both `/cpp(JNI)` side and `rtc4j(Java)` side(If you upgrade webrtc native lib, it is very likely you need to upgrade existed JNI code too)
-
-# Summary
-This project may not be designed very well, but you can use it as a reference to know how to use webrtc native lib. You can take it as a start point to build your project.
