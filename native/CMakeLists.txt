@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.8)
+project(rtc)
+set(CMAKE_CXX_STANDARD 11)
+
+if (APPLE)
+    set(CMAKE_CXX_FLAGS "-fno-rtti -pthread")
+elseif (UNIX)
+    set(CMAKE_CXX_FLAGS "-fno-rtti -pthread -lva -lva-drm -lva-x11 -llzma -lX11 -lz -ldl -ltheoraenc -ltheoradec")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-Bsymbolic -Wl,-z,noexecstack")
+endif()
+
+include(./CMakeModules/FindFFMPEG.cmake)
+include(./CMakeModules/FindLibJpegTurbo.cmake)
+include(./CMakeModules/FindLibyuv.cmake)
+
+if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS WEBRTC_LINUX)
+elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS WEBRTC_MAC)
+endif()
+
+find_package(LibWebRTC REQUIRED)
+find_package(JNI REQUIRED)
+include_directories(${JAVA_INCLUDE_PATH})
+include_directories(${JAVA_INCLUDE_PATH2})
+include(${LIBWEBRTC_USE_FILE})
+include_directories("src")
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${TURBO_INCLUDE_DIRS})
+
+file(GLOB_RECURSE SOURCES *.cpp)
+file(GLOB_RECURSE HEADERS *.h)
+
+add_library(rtc SHARED ${SOURCES} ${HEADERS})
+target_include_directories(rtc PRIVATE ${TURBO_INCLUDE_DIRS} ${FFMPEG_INCLUDE_DIRS})
+target_link_libraries(rtc PRIVATE ${TURBO_LIBRARIES} ${FFMPEG_LIBRARIES} ${LIBWEBRTC_LIBRARIES})

@@ -1,0 +1,14 @@
+server:
+  port: 8000
+
+socket:
+  io:
+    hostname: localhost
+    port: 8001
+
+# WebRTC TURN server config
+webrtc.ice:
+  turns:
+    - uri: turn:13.250.13.83:3478
+      username: YzYNCouZM1mhqhmseWk6
+      password: YzYNCouZM1mhqhmseWk6
